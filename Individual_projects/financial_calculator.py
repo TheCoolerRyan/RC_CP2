@@ -75,7 +75,7 @@ def compound():
             break
     #create for loop that allows for the loop to calculate
     for i in range(num+1):
-        bank += bank*rate
+        bank += bank*percent
     print(f"After {time} months, you have ${bank}!")
 #create stupid proff function
 def proff(variable):
@@ -91,5 +91,5 @@ def proff(variable):
 
 
 
-#Fix compound, its math is wrong
+#might've fixed it, could still be messed up.
 compound()
