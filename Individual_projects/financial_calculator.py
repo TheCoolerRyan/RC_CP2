@@ -63,7 +63,6 @@ def compound():
         test,time = proff(time)
         if test == True:
             num = time
-            
             break
     #Ask how much they are trying to save up to
     while True:
@@ -74,22 +73,101 @@ def compound():
             percent = rate/100
             break
     #create for loop that allows for the loop to calculate
-    for i in range(num+1):
+    for i in range(num):
         bank += bank*percent
-    print(f"After {time} months, you have ${bank}!")
+    print(f"After {time} months, you have ${bank:.2f}!")
+#Create the Budget calculator
+def budget():
+    #Ask them how much money they will have
+    while True:
+        print("Please make sure all percents add up to 100")
+        while True:
+            #Ask for money
+            money = input("How much money do you have?:").strip()
+            #Stupid proof
+            test,money = proff(money)
+            if test == True:
+                break
+        #Ask them for how much they want to put into car
+        while True:
+            #Ask via an input
+            car = input("What percent of your money do you want to put into your car savings? (If its 10%, just put 10):").strip()
+            #stupdid proff
+            test,car = proff(car)
+            if test == True:
+                car = car/100
+                break
+        #Ask them for how much they want to put into grocieris
+        while True:
+            #Ask via an input
+            grocieries = input("What percent of your money do you want to put into your grocieries savings? (If its 10%, just put 10):").strip()
+            #stupdid proff
+            test,grocieries = proff(grocieries)
+            if test == True:
+                grocieries = grocieries/100
+                break
+        #Ask them for how much they want to put into housing
+        while True:
+            #Ask via an input
+            house = input("What percent of your money do you want to put into your house savings? (If its 10%, just put 10):").strip()
+            #stupdid proff
+            test,house = proff(house)
+            if test == True:
+                house = house/100
+                break
+        #Ask them for how much they want to put into emergencies
+        while True:
+            #Ask via an input
+            emergincies = input("What percent of your money do you want to put into your emergincies savings? (If its 10%, just put 10):").strip()
+            #stupdid proff
+            test,emergincies = proff(emergincies)
+            if test == True:
+                emergincies = emergincies/100
+                break
+        #Ask them for how much they want to put into fun
+        while True:
+            #Ask via an input
+            fun = input("What percent of your money do you want to put into your free spending? (If its 10%, just put 10):").strip()
+            #stupdid proff
+            test,fun = proff(fun)
+            if test == True:
+                fun = fun/100
+                break
+        #Ask them for how much they want to put into savings
+        while True:
+            #Ask via an input
+            savings = input("What percent of your money do you want to put into your savings? (If its 10%, just put 10):").strip()
+            #stupdid proff
+            test,savings = proff(savings)
+            if test == True:
+                savings = savings/100
+                break
+        #Create calculations for everyone of the percents
+    #Check to make sure that percents add up to 100
+        if savings + fun + emergincies+ house + grocieries +car == 1:
+            break
+        else:
+            print("That doesn't add up to 100 percent!")
+    save = money*savings
+    fu= money*fun
+    emergin = money*emergincies
+    home = money*house
+    food = money*grocieries
+    van = money*car
+    print(f"Savings is ${save}\nFree time is ${fu}\nEmergincies is ${emergin}\nHouse is ${home}\nGrocieries is ${food}\nCar is ${van}")
 #create stupid proff function
 def proff(variable):
     #Ask how much they are trying to save up to
         #Stupid proff it
-        if variable.isdigit() == True and int(variable) > 0:
-            variable = int(variable)
+        if variable.isdigit() == True and float(variable) > 0:
+            variable = float(variable)
             return True, variable
         else:
             print("That is not a valid option")
             return False, variable
-#Use proof to simplfy code
+
 
 
 
 #might've fixed it, could still be messed up.
-compound()
+budget()
