@@ -95,7 +95,7 @@ def budget():
             #stupdid proff
             test,car = proff(car)
             if test == True:
-                car = car/100
+                cars = car/100
                 break
         #Ask them for how much they want to put into grocieris
         while True:
@@ -104,7 +104,7 @@ def budget():
             #stupdid proff
             test,grocieries = proff(grocieries)
             if test == True:
-                grocieries = grocieries/100
+                grocieriess = grocieries/100
                 break
         #Ask them for how much they want to put into housing
         while True:
@@ -113,7 +113,7 @@ def budget():
             #stupdid proff
             test,house = proff(house)
             if test == True:
-                house = house/100
+                houses = house/100
                 break
         #Ask them for how much they want to put into emergencies
         while True:
@@ -122,7 +122,7 @@ def budget():
             #stupdid proff
             test,emergincies = proff(emergincies)
             if test == True:
-                emergincies = emergincies/100
+                emerginciess = emergincies/100
                 break
         #Ask them for how much they want to put into fun
         while True:
@@ -131,7 +131,7 @@ def budget():
             #stupdid proff
             test,fun = proff(fun)
             if test == True:
-                fun = fun/100
+                funs = fun/100
                 break
         #Ask them for how much they want to put into savings
         while True:
@@ -140,27 +140,30 @@ def budget():
             #stupdid proff
             test,savings = proff(savings)
             if test == True:
-                savings = savings/100
+                savingss = savings/100
                 break
         #Create calculations for everyone of the percents
     #Check to make sure that percents add up to 100
-        if savings + fun + emergincies+ house + grocieries +car == 1:
+        if (savings) + (fun) + (emergincies) + (house) + (grocieries) + (car) == 100:
             break
         else:
             print("That doesn't add up to 100 percent!")
-    save = money*savings
-    fu= money*fun
-    emergin = money*emergincies
-    home = money*house
-    food = money*grocieries
-    van = money*car
-    print(f"Savings is ${save}\nFree time is ${fu}\nEmergincies is ${emergin}\nHouse is ${home}\nGrocieries is ${food}\nCar is ${van}")
+    save = money*savingss
+    fu= money*funs
+    emergin = money*emerginciess
+    home = money*houses
+    food = money*grocieriess
+    van = money*cars
+    print(f"Savings is ${save:.2f}\nFree time is ${fu:.2f}\nEmergincies is ${emergin:.2f}\nHouse is ${home:.2f}\nGrocieries is ${food:.2f}\nCar is ${van:.2f}")
+#Create Tip function
+def tip():
+    print()
 #create stupid proff function
 def proff(variable):
     #Ask how much they are trying to save up to
         #Stupid proff it
-        if variable.isdigit() == True and float(variable) > 0:
-            variable = float(variable)
+        if variable.isdigit() == True and int(variable) > 0:
+            variable = int(variable)
             return True, variable
         else:
             print("That is not a valid option")
