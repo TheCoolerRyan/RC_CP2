@@ -89,54 +89,60 @@ def budget():
             if test == True:
                 break
         #Ask them for how much they want to put into car
+        variable_one = input("What is one thing you want to put in your budget, (There are 6 items in total):").strip()
         while True:
             #Ask via an input
-            car = input("What percent of your money do you want to put into your car savings? (If its 10%, just put 10):").strip()
+            car = input(f"What percent of your money do you want to put into your {variable_one} savings? (If its 10%, just put 10):").strip()
             #stupdid proff
             test,car = proff(car)
             if test == True:
                 cars = car/100
                 break
         #Ask them for how much they want to put into grocieris
+        variable_two = input("What is one thing you want to put in your budget, (There are 6 items in total):").strip()
         while True:
             #Ask via an input
-            grocieries = input("What percent of your money do you want to put into your grocieries savings? (If its 10%, just put 10):").strip()
+            grocieries = input(f"What percent of your money do you want to put into your {variable_two} savings? (If its 10%, just put 10):").strip()
             #stupdid proff
             test,grocieries = proff(grocieries)
             if test == True:
                 grocieriess = grocieries/100
                 break
         #Ask them for how much they want to put into housing
+        variable_three = input("What is one thing you want to put in your budget, (There are 6 items in total):").strip()
         while True:
             #Ask via an input
-            house = input("What percent of your money do you want to put into your house savings? (If its 10%, just put 10):").strip()
+            house = input(f"What percent of your money do you want to put into your {variable_three} savings? (If its 10%, just put 10):").strip()
             #stupdid proff
             test,house = proff(house)
             if test == True:
                 houses = house/100
                 break
         #Ask them for how much they want to put into emergencies
+        variable_four = input("What is one thing you want to put in your budget, (There are 6 items in total):").strip()
         while True:
             #Ask via an input
-            emergincies = input("What percent of your money do you want to put into your emergincies savings? (If its 10%, just put 10):").strip()
+            emergincies = input(f"What percent of your money do you want to put into your {variable_four} savings? (If its 10%, just put 10):").strip()
             #stupdid proff
             test,emergincies = proff(emergincies)
             if test == True:
                 emerginciess = emergincies/100
                 break
         #Ask them for how much they want to put into fun
+        variable_five = input("What is one thing you want to put in your budget, (There are 6 items in total):").strip()
         while True:
             #Ask via an input
-            fun = input("What percent of your money do you want to put into your free spending? (If its 10%, just put 10):").strip()
+            fun = input(f"What percent of your money do you want to put into your {variable_five} savings? (If its 10%, just put 10):").strip()
             #stupdid proff
             test,fun = proff(fun)
             if test == True:
                 funs = fun/100
                 break
         #Ask them for how much they want to put into savings
+        variable_six = input("What is one thing you want to put in your budget, (There are 6 items in total):").strip()
         while True:
             #Ask via an input
-            savings = input("What percent of your money do you want to put into your savings? (If its 10%, just put 10):").strip()
+            savings = input(f"What percent of your money do you want to put into your {variable_six}? (If its 10%, just put 10):").strip()
             #stupdid proff
             test,savings = proff(savings)
             if test == True:
@@ -154,10 +160,34 @@ def budget():
     home = money*houses
     food = money*grocieriess
     van = money*cars
-    print(f"Savings is ${save:.2f}\nFree time is ${fu:.2f}\nEmergincies is ${emergin:.2f}\nHouse is ${home:.2f}\nGrocieries is ${food:.2f}\nCar is ${van:.2f}")
+    print(f"{variable_six} is ${save:.2f}\n{variable_five} is ${fu:.2f}\n{variable_four} is ${emergin:.2f}\n{variable_three} is ${home:.2f}\n{variable_two} is ${food:.2f}\n{variable_one} is ${van:.2f}")
 #Create Tip function
 def tip():
-    print()
+    #Put in a while loop
+    while True:
+        #Ask Them the amount it costs, <-
+        cost = input("Tell me the original cost (Before the tip):").strip()
+        #Stupid proff
+        test, cost = proff(cost)
+        if test == True:
+            break
+    #Then do the same for the percent that is taken of
+    while True:
+        tip = input("Tell me the tip amount (Just the number! No signs,just the number, for example if its 15% of, put 15):").strip()
+        #stupid proff
+        test,tip = proff(tip)
+        if test == True:
+            break
+    #Create a calculation inner function
+    def calculation():
+        percent = tip/100
+        #Times the cost by the after a decimal point (15% iis 0.15)
+        #Subtract that to the cost and put it into a variable
+        price = cost + (cost*percent)
+        #Return Finial variable
+        return price
+    print(f"The end cost is: {calculation():.2f}")
+    #Print of variable.
 #create stupid proff function
 def proff(variable):
     #Ask how much they are trying to save up to
@@ -170,7 +200,33 @@ def proff(variable):
             return False, variable
 
 
+#Create the loop for everything
+while True:
+    #Creat picking loop
+    functions = ["sales","goal","compound", "budget", "tip"]
+    while True:
+        option = input("What part of the financial calculator would you like to use? Sales, goal, compound, budget, or tip?:").strip().lower()
+        if option in functions:
+            break
+        else:
+            print("Thats not an option, try again.")
+    if option == "sales":
+        sales()
+    elif option == "goal":
+        goal()
+    elif option == "compound":
+        compound()
+    elif option == "budget":
+        budget()
+    elif option == "tip":
+        tip()
+    else:
+        print("How did you manage this???")
+    quit = input("Would you like to stop? If you want to stop, type stop. Otherwise type anything else.").strip().lower()
+    if quit == "stop":
+        print("Okay, goodbye!")
+        break
+    else:
+        print("Okay, lets goooo!")
 
 
-#might've fixed it, could still be messed up.
-budget()
