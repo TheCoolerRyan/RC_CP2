@@ -1,7 +1,7 @@
 #RC 1st, List type notes
 
 name = ["Alex", "Katie", "Andrew", "Tia"]
-
+    
 print(name[3])
 name[-2] = "DOW"
 
