@@ -39,16 +39,34 @@ def remove(collection):
         else:
             print("That is not a valid option...")
     collection = collection.pop(rid)
+    #Return new list
     return collection
-    #Then remove bassed of the index.
-
-    #Print off what they have removed
 
 #Create search function
+def search(collection):
     #Ask them if they would like to search based of off title or author
+    while True:
+        method = input("Would you like to search using the author, or the title?:").strip().lower()
+        if method == "author" or method == "title":
+            break
+        else:
+            print("That is not an option.")
     #if its based of off author then for each list in the list, check the list[1] for the author
+    if method == "author":
+        for i in collection:
+            if method in collection[i[1]]:
+                print(f"{i[0]} by {i[1]}")
+            else:
+                pass
     #if its based of off title, then for each list in the list, check the list[0] for the title
-
+    elif method == "title":
+        for i in collection:
+            if method in collection[i[0]]:
+                print(f"{i[0]} by {i[1]}")
+            else:
+                pass
+    else:
+        print("How did you manage this?")
 
 #Create main function
     #Put it in a main while loop
