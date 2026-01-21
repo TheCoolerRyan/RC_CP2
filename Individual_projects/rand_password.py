@@ -35,7 +35,10 @@ def requirments():
             lower = input("Would you like there to be lowercase letters? (put y/n):").strip()
             check = stupid(lower)
             if check == True:
-        
+                if special == "y":
+                    requir_lists.append("low")
+                else:
+                    pass
                 break
             else:
                 print("That is incorrect format...")
@@ -45,6 +48,10 @@ def requirments():
             upper = input("Would you like there to be capital letters? (put y/n):").strip()
             check = stupid(upper)
             if check == True:
+                if special == "y":
+                    requir_lists.append("up")
+                else:
+                    pass
                 break
             else:
                 print("That is incorrect format...")
@@ -54,6 +61,10 @@ def requirments():
             number = input("Would you like there to be numbers? (put y/n):").strip()
             check = stupid(number)
             if check == True:
+                if special == "y":
+                    requir_lists.append("num")
+                else:
+                    pass
                 break
             else:
                 print("That is incorrect format...")
@@ -63,6 +74,10 @@ def requirments():
             special = input("Would you like there to be special characters? (put y/n):").strip()
             check = stupid(special)
             if check == True:
+                if special == "y":
+                    requir_lists.append("dif")
+                else:
+                    pass
                 break
             else:
                 print("That is incorrect format...")
