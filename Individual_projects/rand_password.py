@@ -5,7 +5,7 @@ import string
 #Use random.choice
 #Creat lists for the random.choice to pull from
 characters = list(string.ascii_letters + string.digits + string.punctuation)
-requir_lists = []
+require_lists = []
 #Create stupid proffing function
 def stupid(letter):
     #Check to see if the value is y or n, if it is the return true
@@ -18,7 +18,7 @@ def stupid(letter):
 
 
 #Create function for asking for password requirements
-def requirments():
+def requirments(require_lists):
     #Create a loop to keep the requirements correct
     while True:
         #Ask for the length of the password and check to see that its a number
@@ -36,7 +36,7 @@ def requirments():
             check = stupid(lower)
             if check == True:
                 if special == "y":
-                    requir_lists.append("low")
+                    require_lists.append("low")
                 else:
                     pass
                 break
@@ -49,7 +49,7 @@ def requirments():
             check = stupid(upper)
             if check == True:
                 if special == "y":
-                    requir_lists.append("up")
+                    require_lists.append("up")
                 else:
                     pass
                 break
@@ -62,7 +62,7 @@ def requirments():
             check = stupid(number)
             if check == True:
                 if special == "y":
-                    requir_lists.append("num")
+                    require_lists.append("num")
                 else:
                     pass
                 break
@@ -75,7 +75,7 @@ def requirments():
             check = stupid(special)
             if check == True:
                 if special == "y":
-                    requir_lists.append("dif")
+                    require_lists.append("dif")
                 else:
                     pass
                 break
@@ -90,8 +90,11 @@ def requirments():
 
 
 #Create function that uses those requirements to create the passwords
+def create(characters, require_lists):
     #Use a for loop to go through the main 
+    while True:
         #Then create a loop that will check wether or not the character meets the requirments (Upper, Lower, number, special character).
+
             #If it does, break and add it to the final string
             #Otherwise get a new thing from it
 
