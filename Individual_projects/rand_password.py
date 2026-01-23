@@ -6,6 +6,10 @@ import string
 #Creat lists for the random.choice to pull from
 characters = list(string.ascii_letters + string.digits + string.punctuation)
 require_lists = []
+passwords = {"Password 1": "",
+             "Password 2": "",
+             "Password 3": "",
+             "Password 4": "",}
 #Create stupid proffing function
 def stupid(letter):
     #Check to see if the value is y or n, if it is the return true
@@ -82,7 +86,7 @@ def requirments(require_lists):
             else:
                 print("That is incorrect format...")
         break
-    return length,
+    return length, require_lists
 
 
 
@@ -90,13 +94,18 @@ def requirments(require_lists):
 
 
 #Create function that uses those requirements to create the passwords
-def create(characters, require_lists):
+def create(characters, require_lists, length):
     #Use a for loop to go through the main 
     while True:
-        #Then create a loop that will check wether or not the character meets the requirments (Upper, Lower, number, special character).
-
-            #If it does, break and add it to the final string
-            #Otherwise get a new thing from it
+        while True:
+            #Create the first attempt
+            for i in length:
+                pass
+                #WORK HERE                           ________
+            #Then create a loop that will check wether or not the character meets the requirments (Upper, Lower, number, special character).
+            
+                #If it does, break and add it to the final string
+                #Otherwise get a new thing from it
 
 
 #Create function to check the passwords
@@ -104,7 +113,6 @@ def create(characters, require_lists):
         #Then check to make sure that it follows the requirments
     #Check to make sure that all requirements were met 
     #Return true or false depending on the password
-
 
 
 
