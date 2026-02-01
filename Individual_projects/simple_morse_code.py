@@ -9,23 +9,29 @@ def simple(sentance):
 
 #Create a function to take the letters index in the list and then flip it
 def comparison(sentance, choice,alphabet,morse_code):
+    #Check to see which one of the functions its coming from
     if choice == "letter":
+        #Create a string for the final sentance
         final = ""
+        #Check each and every one to see which letter it is, then add that to the final string.
         for i in sentance:
-            if i == "":
+            if i == " ":
                 final + i
             else:
                 index = alphabet.index(i)
                 pick = morse_code[index]
-                final + pick
+                final = final + pick + " "
         return final
-
+    #Repeat earlier code, but for morse code instead.
     else:
         final = ""
         for i in sentance:
-            index = morse_code.index(i)
-            pick = alphabet[index]
-            final = final + pick
+            if i == "space":
+                final += " "
+            else:
+                index = morse_code.index(i)
+                pick = alphabet[index]
+                final += pick
         return final
 
 
@@ -33,12 +39,21 @@ def comparison(sentance, choice,alphabet,morse_code):
 def morse(alphabet,morse_code):
     choice = "letter"
     while True:
+        good = True
     #Ask them for there sentance and aplly the stupid proff function
         sentance = input("Please give me a sentance you want to turn into morse code (No numbers):")
     #Make sure the answer is correct formating
-        if sentance.isdigit() == False and len(sentance) > 0:
-            sentance = simple(sentance)
-            break
+        if len(sentance) > 0:
+            for i in sentance:
+                if i.isdigit() == True:
+                    good = False
+                else:
+                    pass
+            if good == True:
+                sentance = simple(sentance)
+                break
+            else:
+                print("No numbers, please.")
         else:
             print("Please make sure that there is only letters and that you actually type something...")
         
@@ -46,8 +61,7 @@ def morse(alphabet,morse_code):
     sentance = list(sentance)
 
     #print(Use the list comparasin function)
-    print(f"\n{comparison(sentance,choice,alphabet,morse_code)}\n")
-    
+    print(f"\n{comparison(sentance,choice,alphabet,morse_code).capitalize()}\n")
 
 #Create a function to turn morse code back into english
 def words(alphabet,morse_code):
@@ -56,9 +70,9 @@ def words(alphabet,morse_code):
     sentance = []
     while True:
         #Ask them for the first part of morse code (The first letter sequence)
-        pick = simple(input("Please give me a letter in morse code. If you want to stop adding, put exit instead. (e.g. for morse code input ->  .--):"))
+        pick = simple(input("Please give me a letter in morse code. If you want a space, type space. If you want to stop adding, put exit instead. (e.g. for morse code input ->  .--):"))
         #Check to make sure that its morse code, then add that to a list
-        if pick in morse_code:
+        if pick in morse_code or pick == "space":
             sentance.append(pick)
         #If they put exit, have them stop inputing
         elif pick == "exit":
@@ -67,7 +81,7 @@ def words(alphabet,morse_code):
             print("Please only input correct morse code...")
 
     #print(Use the list comparasin function)
-    print(f"\n{comparison(sentance,choice,alphabet,morse_code)}\n")
+    print(f"\n{comparison(sentance,choice,alphabet,morse_code).capitalize()}\n")
 
 
 #Create main function
