@@ -1,1 +1,1 @@
-capitalize
+headers = next(content)
