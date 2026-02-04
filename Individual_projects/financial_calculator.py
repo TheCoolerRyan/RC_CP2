@@ -1,4 +1,4 @@
-#RC 1st, Finacial Calculator
+#RC 1st, Finacial Calculatorr
 
 #Creat sales function
 def sales():
