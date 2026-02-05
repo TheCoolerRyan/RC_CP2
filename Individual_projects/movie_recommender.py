@@ -2,7 +2,7 @@
 import csv
 
 #create somethingt to put the movie lists into a dictoinary
-def sort():
+def paser():
     #Use try and except
     try:
         with open("Individual_projects/movies_list.csv", mode = "r") as csv_file:
@@ -13,14 +13,22 @@ def sort():
                 rows[line[0]] =  [line[1],line[2],line[3],int(line[4]),list[line[5]]]
 
     except:
-        print("We can't find the csv")
+        print("We can't find the csv file")
 
     else:
         for key,value in rows.items():
             print(f"{key}: {value}")
 
+#Create function for genre
+
+#Create function for director
+
+#Create function for actor 
+
+#Create function for length
 
 #Create function that will look at the selected filters, and combine there requirements
+
 
 
 
@@ -33,4 +41,4 @@ def main(rows):
 
 
 
-sort()
+paser()
