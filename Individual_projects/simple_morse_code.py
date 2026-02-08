@@ -3,7 +3,7 @@
 #Create stupid proff function
 def simple(sentance):
     #set the sentance to .lower and .strip
-    sentance = sentance.strip().lower()
+    sentance = (f"{sentance}").strip().lower()
     #return the answer
     return sentance
 
