@@ -168,13 +168,27 @@ def pretty():
 
 def main(rows):
     print("Hey, this is a movie recommendation program that can tell you the length , title, year, genre, and more!!!")
+    while True:
+        not_available = []
+        choice = input("\nWhich one of the three working ones do you want to try? (Genres, Directors, or Actors) You can put exit to quit:").strip().title()
+        if choice == "Genres":
+            print(genres(rows,not_available))
+        elif choice == "Directors":
+            print(directors(rows,not_available))
+        elif choice == "Actors":
+            print(actors(rows,not_available))
+        elif choice == "Quit":
+            print("Goodbye")
+            break
+        else:
+            print("Thats not an option")
 
+
+                
 
 
 
 rows = paser()
-test = actors(rows, [])
-print(test)
-
+main(rows)
 
 #Set the end values to a set so then they can't have duplacites
