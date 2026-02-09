@@ -8,7 +8,7 @@ def paser():
             headers = next(content)
             rows = {}
             for line in content:
-                rows[line[0]] = [line[1],line[2],line[3],int(line[4]),list[line[5]]]
+                rows[line[0]] = [line[1],line[2],line[3],int(line[4]),[line[5]]]
 
     except:
         print("We can't find the csv file")
@@ -16,12 +16,12 @@ def paser():
 
 
 def genres(rows, not_available):
-    contains = ["sci-fi", "adventure", "comedy", "animation", "drama", "history", "biography", "sport", "family", "romance",]
+    contains = ["Sci-Fi", "Adventure", "Comedy", "Animation", "Drama", "History", "Biography", "Sport", "Family", "Romance",]
     print("Available genres ->")
     for i in contains:
         print((i).title())
     while True:
-        genre = input("\nWhat genre would you like to search for:").strip().lower()
+        genre = input("\nWhat genre would you like to search for:").strip().title()
         if genre in contains:
             break
         else:
@@ -85,26 +85,58 @@ def directors(rows, not_available):
     return not_available
 
 
-def actors(rows,actor, not_available):
+def actors(rows, not_available):
+    contents = []
+    for i in rows.values():
+        for x in i[4]:
+            contents.append(x.split(","))
+    while True:
+        end = False
+        for i in contents:
+            for x in i:
+                print(f"{x}")
+        actor = input("\nPlease type the name of the actor you want to search for here:").strip().title()
+        for i in contents:
+            for x in i:
+                if actor == x:
+                    end = True
+                else:
+                    pass
+        if end == True:
+            break
+        else: 
+            print("That is not an available actor...")
+    amount = []
+    fix = []
     for key, value in rows.items():
-        amount = list((f"{value[5]}").split(",").strip())
+        for i in value[4]:
+            fix.append((i).split(","))
+            for x in fix:
+                for z in x:
+                    amount.append(z)
+        
         if len(amount) == 1:
-            if value[5] != actor:
+           
+            if amount != actor and actor not in amount:
                 not_available.append(key)
             else:
                 pass
         elif len(amount) == 2:
-            for i,x in amount:
-                if i != actor and x != actor:
-                    not_available.append(key)
-                else:
-                    pass
+            if amount[0] != actor and amount[1] != actor and actor not in amount:
+                not_available.append(key)
+            else:
+                pass
         else:
-            for i,x,z in amount:
-                if i != actor and x != actor and z != actor:
-                    not_available.append(key)
+            x = 0
+            for i in amount:
+                if i == actor:
+                    x += 1
                 else:
                     pass
+            if x < 1:
+                not_available.append(key)
+            else:
+                pass
     return not_available
 
 def lengths(rows,not_available):
@@ -141,5 +173,8 @@ def main(rows):
 
 
 rows = paser()
-test = genres(rows, [])
+test = actors(rows, [])
 print(test)
+
+
+#Set the end values to a set so then they can't have duplacites
