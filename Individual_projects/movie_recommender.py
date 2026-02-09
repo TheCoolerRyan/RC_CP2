@@ -172,11 +172,11 @@ def main(rows):
         not_available = []
         choice = input("\nWhich one of the three working ones do you want to try? (Genres, Directors, or Actors) You can put exit to quit:").strip().title()
         if choice == "Genres":
-            print(genres(rows,not_available))
+            print(*genres(rows,not_available))
         elif choice == "Directors":
-            print(directors(rows,not_available))
+            print(*directors(rows,not_available))
         elif choice == "Actors":
-            print(actors(rows,not_available))
+            print(*actors(rows,not_available))
         elif choice == "Quit":
             print("Goodbye")
             break
