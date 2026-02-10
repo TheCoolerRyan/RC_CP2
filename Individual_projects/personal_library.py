@@ -17,8 +17,11 @@ def add(collection):
 #Create view function
 def view(collection):
     #For everything in the list, print of book name by author
-    for i in collection:
-        print(f"{i[0]} by {i[1]}")
+    if not collection:
+        print("You don't have anything to view")
+    else:
+        for i in collection:
+            print(f"{i[0]} by {i[1]}")
     #Spacer for easier viewing (Added while improving code)
     print("\n")
 
