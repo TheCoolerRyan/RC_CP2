@@ -2,7 +2,7 @@
 
 import csv
 
-"""while True:
+while True:
     try:
         with open("Notes/reading.txt", "r") as file:
             for line in file:
@@ -14,7 +14,7 @@ import csv
 
     else:
         print("Code ends")
-        break"""
+        break
 
 
 try:

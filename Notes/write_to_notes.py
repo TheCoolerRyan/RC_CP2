@@ -15,7 +15,7 @@ print("Code end")"""
 
 
 import csv
-"""
+
 #Setup for reading/writing
 with open("Notes/sample.csv", 'w', newline= '') as csvfile:
     fieldnames = ['username','color']
@@ -25,7 +25,7 @@ with open("Notes/sample.csv", 'w', newline= '') as csvfile:
     writer.writerow({'username':'joe', 'color':'red'})
     writer.writerow({'username':'manny', 'color':'pink'})
 
-print("Code is done")"""
+print("Code is done")
 
 with open("Notes/sample.csv", 'r+', newline= '') as csvfile:
     fieldnames = ['username','color']

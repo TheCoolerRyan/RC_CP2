@@ -1,15 +1,24 @@
 #RC 1st, update personal library program
 
+import csv
+
 #Create add function
 def add(collection):
     #Ask for them to input the title
     title = input("Please give me the book title:").strip().title()
     #Ask them to input the author
     author = input("Please give me the Author:").strip().title()
+    while True:
+        year = input("Please give me the year it was publish:").strip()
+        if year.isdigit() == True:
+            break 
+        else:
+            print("Thats not a number...")
+    genre = input("Please give me the main genre:").strip().title()
     #Then put those to values into a list and add that to the list
-    collection.append({title: author})
+    collection.append({title: [author, year, genre]})
     #Print off what you have added
-    print(f"You have added:\n{title} by {author}!")
+    print(f"You have added:\n{title} by {author}! Published in {year} and its main genre is {genre}!")
     #Spacer for easier viewing (Added while improving code)
     print("\n")
     return collection
@@ -17,12 +26,26 @@ def add(collection):
 #Create view function
 def view(collection):
     #For everything in the list, print of book name by author
-    if not collection:
-        print("You don't have anything to view")
+    while True:
+        choice = input("If you would like to see a detaild list put 1, if you want to see a simple list put 2:")
+        if choice == "1" or choice == "2":
+            break
+        else:
+            print("Thats not available!")
+    if choice == "1":
+        if not collection:
+            print("You don't have anything to view...")
+        else:
+            for i in collection:
+                key, value = i.items()
+                print(f"{key} by {value[0]}! Published in {value[1]} and its main genre is {value[2]}!")
     else:
-        for i in collection:
-            for x in i.items():
-                print(f"{x[0]} by {x[1]}")
+        if not collection:
+            print("You don't have anything to view...")
+        else:
+            for i in collection:
+                key, value = i.keys()
+                print(f"{key} by {value[0]}")
     #Spacer for easier viewing (Added while improving code)
     print("\n")
 
@@ -31,8 +54,8 @@ def remove(collection):
     #for every list in the list, print off them numbered and author by name
     x = 1
     for i in collection:
-        for z in i.items():
-            print(f"{x}. {z[0]} by {z[1]}")
+        key, value = i.keys()
+        print(f"{x}. {key} by {value[0]}")
         x += 1
     #Have them input what number they would like to get rid of
     while True:
@@ -81,10 +104,34 @@ def search(collection):
     else:
         print("How did you manage this?")
 
+#create a save function
+def save(collection):
+    with open("Individual_projects/books.csv", mode = "w", newline= '') as csv_file:
+        fieldnames = ['title','creator','year','genre']
+        writer = csv.DictWriter(csv_file, fieldnames= fieldnames)
+        for i in collection:
+            key, value = i.items()
+            writer.writerow({'title': key, 'creator': value[0], 'year': value[1], 'genre': value[2]})
+    
+       
+    try:
+        with open("Individual_projects/books.csv",mode = "r") as csv_file:
+            content = csv.reader(csv_file)
+            headers = next(content)
+            collection = []
+            for line in content:
+                collection.append({line[0]: [line[1],line[2],line[3]]})
+    except:
+        print("Can't find file...")
+    else:
+        print("Library saved")
+
+    return collection
+
 #Create main function
 def main():
     #Create tupple of of functions
-    functions = ("add","view","remove","search","exit")
+    functions = ("add","view","remove","search","save", "exit")
     #Create list for lists of books and authors
     collection = []
     #Put it in a main while loop
@@ -96,7 +143,7 @@ def main():
                 i = i.title()
                 print(f"{x}. {i}")
                 x +=1
-            choice = input("What function would you like to chose? (Please put the name, not the number):").strip().lower()
+            choice = input("What function would you like to chose? (Please put the name, not the number, inside of view there is also an option for detailed viewing):").strip().lower()
             #Check if its in a tupple
             if choice in functions:
                 #Break
@@ -119,6 +166,8 @@ def main():
         elif choice == "exit":
             print("Okay, goodbye and thank you for using my program!!! :)")
             break
+        elif choice == "save":
+            collection = save(collection)
         else:
             print("How the crap did you manage this?????")
     
