@@ -116,6 +116,8 @@ def save(collection):
     with open("Individual_projects/books.csv", mode = "w", newline= "") as csv_file:
         fieldnames = ['title','creator','year','genre']
         writer = csv.DictWriter(csv_file, fieldnames= fieldnames)
+        header = ['title','creator','year','genre']
+        writer.writeheader()
         for i in collection:
             key = list(i.keys())[0]
             value = list(i.values())
@@ -123,7 +125,7 @@ def save(collection):
     
     #Pull to reconnect everything
     try:
-        with open("Individual_projects/books.csv",mode = "r") as csv_file:
+        with open("Individual_projects/books.csv",mode = "r", encoding='utf-8') as csv_file:
             content = csv.reader(csv_file)
             headers = next(content)
             collection = []
@@ -142,17 +144,17 @@ def main():
     functions = ("add","view","remove","search","save", "exit")
     #Create list for lists of books and authors
     collection = []
+    try:
+        with open("Individual_projects/books.csv",mode = "r", encoding='utf-8') as csv_file:
+            content = csv.reader(csv_file)
+            headers = next(content)
+            collection = []
+            for line in content:
+                collection.append({line[0]: [line[1],line[2],line[3]]})
+    except:
+        print("Can't find file...")
     #Put it in a main while loop
     while True:
-        try:
-            with open("Individual_projects/books.csv",mode = "r") as csv_file:
-                content = csv.reader(csv_file)
-                headers = next(content)
-                collection = []
-                for line in content:
-                    collection.append({line[0]: [line[1],line[2],line[3]]})
-        except:
-            print("Can't find file...")
         while True:
             #Ask them what function they would like while in a while loop
             x = 1
