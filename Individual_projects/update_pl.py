@@ -32,43 +32,49 @@ def view(collection):
             break
         else:
             print("Thats not available!")
+    #print the simple or the complex
     if choice == "1":
         if not collection:
             print("You don't have anything to view...")
         else:
             for i in collection:
-                key, value = i.items()
-                print(f"{key} by {value[0]}! Published in {value[1]} and its main genre is {value[2]}!")
+                key = list(i.keys())[0]
+                value = list(i.values())
+                print(f"{key} by {value[0][0]}! Published in {value[0][1]} and its main genre is {value[0][2]}!")
     else:
         if not collection:
             print("You don't have anything to view...")
         else:
             for i in collection:
-                key, value = i.keys()
-                print(f"{key} by {value[0]}")
+                key = list(i.keys())[0]
+                value = list(i.values())
+                print(f"{key} by {value[0][0]}")
     #Spacer for easier viewing (Added while improving code)
     print("\n")
 
 #Create remove function
 def remove(collection):
     #for every list in the list, print off them numbered and author by name
-    x = 1
-    for i in collection:
-        key, value = i.keys()
-        print(f"{x}. {key} by {value[0]}")
-        x += 1
-    #Have them input what number they would like to get rid of
-    while True:
-        rid = input("What number would you like to get rid off?:").strip()
-        if rid.isdigit() == True and int(rid) > 0 and int(rid) < x+1:
-            rid = int(rid)-1
-            break
-        else:
-            print("That is not a valid option...")
-    collection = collection.pop(rid)
-    #Return new list
-    #Spacer for easier viewing (Added while improving code)
-    print("\n")
+    if not collection:
+        print("There is nothing to remove...")
+    else:
+        x = 1
+        for i in collection:
+            key, value = i.keys()
+            print(f"{x}. {key} by {value[0]}")
+            x += 1
+        #Have them input what number they would like to get rid of
+        while True:
+            rid = input("What number would you like to get rid off?:").strip()
+            if rid.isdigit() == True and int(rid) > 0 and int(rid) < x+1:
+                rid = int(rid)-1
+                break
+            else:
+                print("That is not a valid option...")
+        collection = collection.pop(rid)
+        #Return new list
+        #Spacer for easier viewing (Added while improving code)
+        print("\n")
     return collection
 
 #Create search function
@@ -106,14 +112,16 @@ def search(collection):
 
 #create a save function
 def save(collection):
-    with open("Individual_projects/books.csv", mode = "w", newline= '') as csv_file:
+    #Save the curret collection
+    with open("Individual_projects/books.csv", mode = "w", newline= "") as csv_file:
         fieldnames = ['title','creator','year','genre']
         writer = csv.DictWriter(csv_file, fieldnames= fieldnames)
         for i in collection:
-            key, value = i.items()
-            writer.writerow({'title': key, 'creator': value[0], 'year': value[1], 'genre': value[2]})
+            key = list(i.keys())[0]
+            value = list(i.values())
+            writer.writerow({'title': key, 'creator': value[0][0], 'year': value[0][1], 'genre': value[0][2]})
     
-       
+    #Pull to reconnect everything
     try:
         with open("Individual_projects/books.csv",mode = "r") as csv_file:
             content = csv.reader(csv_file)
@@ -125,7 +133,7 @@ def save(collection):
         print("Can't find file...")
     else:
         print("Library saved")
-
+    #Return the list to continue working.
     return collection
 
 #Create main function
@@ -136,6 +144,15 @@ def main():
     collection = []
     #Put it in a main while loop
     while True:
+        try:
+            with open("Individual_projects/books.csv",mode = "r") as csv_file:
+                content = csv.reader(csv_file)
+                headers = next(content)
+                collection = []
+                for line in content:
+                    collection.append({line[0]: [line[1],line[2],line[3]]})
+        except:
+            print("Can't find file...")
         while True:
             #Ask them what function they would like while in a while loop
             x = 1
