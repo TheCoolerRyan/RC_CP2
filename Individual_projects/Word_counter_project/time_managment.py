@@ -10,4 +10,4 @@ def read_time():
     readable_time = time.ctime(current_time)
     #Return readble time
     return readable_time
-    
+     

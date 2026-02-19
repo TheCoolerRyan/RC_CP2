@@ -13,7 +13,7 @@
 #Create a function to read the file 
     #use with open to read the file and then add it to a string
     #Return the full txt as a sentance
-
+ 
 
 
 
