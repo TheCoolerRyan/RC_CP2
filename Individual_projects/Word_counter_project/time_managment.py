@@ -2,7 +2,6 @@
 
 #Import time for management
 import time
-
 #Create function to load the time
 def read_time():
     #Get a reable time
