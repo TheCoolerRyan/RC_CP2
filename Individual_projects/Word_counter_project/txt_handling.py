@@ -12,7 +12,8 @@ def save(file_path, sentance):
     #While its still open, also add the time
     with open(file_path, "w") as file:
         file.write(sentance)
-        file.write(good_time)
+        together = "(" + "Last updated: " + good_time + ")"
+        file.write(together)
 
     return (f"Document is updated. Word count {counts}")
 
@@ -47,9 +48,9 @@ def add():
     #Put them into a while loop
     while True:
         #Ask them for the input they would like to add to a sentance
-        content = input()
+        content = input().strip()
         #Append that to the sentance variable
-        sentance += content
+        sentance += (content + " ")
         #If the input = an empty string then break
         if content == "":
             break
