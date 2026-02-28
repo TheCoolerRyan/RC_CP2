@@ -2,7 +2,6 @@
 
 #Import turtle
 import turtle
-import dog_inp
 
 #Create dictionary that will create the basic triangle
 def draw_triangle(points, my_turtle):
@@ -50,8 +49,8 @@ def sierpinski(points, num, my_turtle):
 def main():
 
     #Ask them how many times they want to repeat it (1-5)
-    num = dog_inp.menu([1,2,3,4,5])
-    num = num.get("index")
+    num = 3
+
     #Create stuff for turtle
     my_turtle = turtle.Turtle()
     my_turtle.speed(0)
@@ -67,3 +66,4 @@ def main():
 
 
 main()
+turtle.done()
