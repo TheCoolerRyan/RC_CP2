@@ -2,22 +2,24 @@
 
 #Import turtle
 import turtle
+import time
 from triangle_creation import *
 
-try:
-    import dog_inp
-except:
-    print("Please use pip install to install dog_inp")
+
 
 #Create main
 def main():
     x = 0
     print("This is the a program that will draw the sierpinski triangle for you!")
     while True:
-        #Ask them how many times they want to repeat it (1-5)
-        input("Once you pass this point, you will pick the depth of the sierpinski. Do you acknowledge this? (Just click enter, the message will explode)\n")
-        num = dog_inp.menu([1,2,3,4,5])
-        num = num.get("index")
+        while True:
+            #Ask them how many times they want to repeat it (1-5)
+            num = input("Pick the depth of the sierpinski please. (1-5):").strip()
+            if num.isdigit() == True and int(num) >= 1 and int(num) <= 5:
+                num = int(num)
+                break
+            else:
+                print("That is not a number 1-5...")
         #Lazy fix
         if x > 0:
             pass
@@ -28,10 +30,8 @@ def main():
             my_turtle.shape("turtle")
             window = turtle.Screen()
             window.title("Fractal Pattern")
-        if x > 0:
-            my_turtle.showturtle()
-        else:
-            pass
+            root = window.getcanvas().winfo_toplevel()
+            root.deiconify()
         #Figure out the color
 
         #Create base points for the main triangle
@@ -40,13 +40,14 @@ def main():
         #call the function to create the complex triangle and inside of it will be the draw triangle function
         sierpinski(my_points, num, my_turtle)
         turtle.hideturtle()
-        window.exitonclick()
-
+        exiter = turtle.Turtle()
+        exiter.write("Click to exit", align="center")
+        exiter.onclick(x)
+        window.clearscreen()
+        root.withdraw()
         #Allow them to quit or play again
-        print("Thank you for running my program! What would you like to do:")
-        quit = dog_inp.menu(["Quit","Run again"])
-        quit = quit.get("index")
-        if quit == 0:
+        quit = input("Thank you for running my program! Would you like to quit, if you do please put quit:").strip().lower()
+        if quit == "quit":
             break
         else:
             pass
