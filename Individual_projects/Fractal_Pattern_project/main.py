@@ -12,6 +12,12 @@ def main():
     x = 0
     print("This is the a program that will draw the sierpinski triangle for you!")
     while True:
+        try:
+            color = input("Please insert the background color:").strip().lower()
+            turtle.bgcolor(color)
+        except turtle.TurtleGraphicsError:
+            print("That color is not an option")
+
         while True:
             #Ask them how many times they want to repeat it (1-5)
             num = input("Pick the depth of the sierpinski please. (1-5):").strip()
@@ -22,7 +28,7 @@ def main():
                 print("That is not a number 1-5...")
         #Lazy fix
         if x > 0:
-            pass
+            root.deiconify()
         else:
             #Create turtle
             my_turtle = turtle.Turtle()
@@ -31,8 +37,7 @@ def main():
             window = turtle.Screen()
             window.title("Fractal Pattern")
             root = window.getcanvas().winfo_toplevel()
-            root.deiconify()
-        #Figure out the color
+            
 
         #Create base points for the main triangle
         my_points = [[-200, -150], [0, 200], [200, -150]]
