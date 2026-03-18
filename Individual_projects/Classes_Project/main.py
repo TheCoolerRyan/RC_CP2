@@ -3,10 +3,14 @@ from calculations import *
 # User Interface
 def main():
     print("\nGeometry Calculator:")
+    load("Put variable here")
     shapes = []
     
     while True:
         try:
+            x = 0
+            #CREATE A BUNCH OF MEASUREMENT VALUES THAT WILL BE SET TO ZERO EACH TIME
+            #Show them what they can do
             print("\n1. Create a Circle")
             print("2. Create a Rectangle")
             print("3. Create a Square")
@@ -22,43 +26,92 @@ def main():
             choice = input("Enter your choice: ")
 
             if choice == "1":
-                radius = float(input("Enter the radius of the circle: "))
+                x += 1 
+                while True:
+                    radius = proffing(float(input("Enter the radius of the circle: ")))
+                    if radius != False:
+                        break
+                    else:
+                        print("Please enter a valid number")
                 shapes.append(Circle(radius))
 
             elif choice == "2":
-                length = float(input("Enter the length of the rectangle: "))
-                width = float(input("Enter the width of the rectangle: "))
+                x += 1
+                while True:
+                    length = proffing(float(input("Enter the length of the rectangle: ")))
+                    width = proffing(float(input("Enter the width of the rectangle: ")))
+                    if width != False and length != length:
+                        break
+                    else:
+                        print("Please enter a valid number")
                 shapes.append(Rectangle(length, width))
 
             elif choice == "3":
-                side = float(input("Enter the side length of the square: "))
+                x += 1 
+                while True:
+                    side = proffing(float(input("Enter the side length of the square: ")))
+                    if side != False:
+                        break
+                    else:
+                        print("Please enter a valid number")
                 shapes.append(Square(side))
 
             elif choice == "4":
-                length = float(input("Enter the length of the triangle: "))
-                width = float(input("Enter the width of the triangle: "))
+                x += 1 
+                while True:
+                    length = proffing(float(input("Enter the length of the triangle: ")))
+                    width = proffing(float(input("Enter the width of the triangle: ")))
+                    if length != False and width != False:
+                        break
+                    else:
+                        print("Please enter a valid number")
                 shapes.append(Triangle(length, width))
 
             elif choice == "5":
-                radius = float(input("Enter the radius of the sphere: "))
+                x += 1 
+                while True:
+                    radius = proffing(float(input("Enter the radius of the sphere: ")))
+                    if radius != False:
+                        break
+                    else:
+                        print("Please enter a valid input")
                 shapes.append(Sphere(radius))
 
             elif choice == "6":
-                side = float(input("Enter the side length of the cube: "))
+                x += 1 
+                while True:
+                    side = proffing(float(input("Enter the side length of the cube: ")))
+                    if side != False:
+                        break
+                    else:
+                        print("Please enter a valid number")
                 shapes.append(Cube(side))
 
             elif choice == "7":
-                length = float(input("Enter the length of the cuboid: "))
-                width = float(input("Enter the width of the cuboid: "))
-                height = float(input("Enter the height of the cuboid: "))
+                x += 1 
+                while True:
+                    length = proffing(float(input("Enter the length of the cuboid: ")))
+                    width = proffing(float(input("Enter the width of the cuboid: ")))
+                    height = proffing(float(input("Enter the height of the cuboid: ")))
+                    if length != False and width != False and height != False:
+                        break
+                    else:
+                        print("Please enter a valid number")
                 shapes.append(Cuboid(length, width, height))
 
             elif choice == "8":
-                radius = float(input("Enter the radius of the cylinder: "))
-                height = float(input("Enter the height of the cylinder: "))
+                x += 1 
+                while True:
+                    radius = proffing(float(input("Enter the radius of the cylinder: ")))
+                    height = proffing(float(input("Enter the height of the cylinder: ")))
+                    if radius != False and height != False:
+                        break
+                    else:
+                        print("Please enter a valid number")
                 shapes.append(Cylinder(radius, height))
 
             elif choice == "9":
+                x+=1
                 if not shapes:
                     print("No shapes created yet")
                 else:
@@ -66,6 +119,7 @@ def main():
                         print(f"{i}. {shape.display_info()}")
 
             elif choice == "10":
+                x+=1
                 if len(shapes) < 2:
                     print("You need at least two shapes are needed to compare")
                 
@@ -76,8 +130,13 @@ def main():
 
                 else:
                     print("\n")
-                    idx1 = int(input("Enter the number of the first shape: ")) - 1
-                    idx2 = int(input("Enter the number of the second shape: ")) - 1
+                    while True:
+                        idx1 = int(input("Enter the number of the first shape: ")) - 1
+                        idx2 = int(input("Enter the number of the second shape: ")) - 1
+                        if idx1 >=1 and idx1 <= number and idx2 >= 1 and idx2 <= number:
+                            break
+                        else:
+                            print("Please enter a valid number")
                     shape1 = shapes[idx1]
                     shape2 = shapes[idx2]
 
@@ -132,6 +191,10 @@ def main():
 
             else:
                 print("Invalid input")
+            if x == 1:
+                save("Put the variable here")
+            else:
+                pass
         except:
             print("Invalid input")
 

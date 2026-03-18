@@ -1,6 +1,5 @@
 #Ryan Crop 1st, Calculations for Classes Project.
-#Alex Anderson, Geometry Calculator
-
+import csv
 # Shape classes
 class Circle:
     def __init__(self, radius):
@@ -187,10 +186,29 @@ class Cylinder:
             return f"Cylinder: Radius = {self.radius}, Height = {self.height}, Volume = {self.volume()}, Surface Area = {self.surface_area()}"
         return "Radius and height must be positive"
 
-
+#Create a stupid proffing function
 def proffing(num):
-    num = int(num)
-    if num > 0:
-        return str(num)
+    #Check to make sure its a number and its above 0
+    if num.isdigit() == True:
+        num = int(num)
+        if num > 0:
+            #Based on wether or not its above 0 return either the number or the False
+            return str(num)
+        else:
+            return False
     else:
         return False
+    
+
+
+def load():
+    pass
+
+def save(shapes):
+    feildnames = ["Name", "Length", "Width", "Height", "Radius"]
+    with open("Individual_projects/Classes_Project/geometry_information.csv", "w", newline = "") as user_list:
+        writer = csv.DictWriter(user_list, fieldnames = feildnames)
+        writer.writeheader()
+        for shape in shapes:
+            writer.writerows(shape)
+
