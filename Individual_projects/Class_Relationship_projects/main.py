@@ -1,12 +1,13 @@
 from calculations import *
 
 def main():
+    #Define library
     gradebook = GradeBook()
 
     while True:
         display_menu()
         choice = input("Enter your choice (1-5): ")
-
+        #Ask which function they want and run the corisponding function
         if choice == '1':
             name = input("Enter student's name: ")
             student_id = input("Enter student ID: ")
