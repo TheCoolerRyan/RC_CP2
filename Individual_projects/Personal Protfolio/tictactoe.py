@@ -144,5 +144,3 @@ def main_tic():
         win(grid, game_finished) 
         if game_finished is True:
             break
-
-main_tic()

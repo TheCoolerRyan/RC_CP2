@@ -60,4 +60,3 @@ def main_turt():
         #Lazy fix
         x += 1
 
-main_turt()
