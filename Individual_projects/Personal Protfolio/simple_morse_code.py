@@ -85,7 +85,7 @@ def words(alphabet,morse_code):
 
 
 #Create main function
-def main():
+def main_morse():
     #Explain
     print("This is a program that allows you to convert morse code to english and convert english to morse code. Please have a fun time and follow the rules!!!  :)")
 
@@ -114,4 +114,4 @@ def main():
 
 
 
-main()
+main_morse()

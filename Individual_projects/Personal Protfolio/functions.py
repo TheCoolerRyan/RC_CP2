@@ -1,6 +1,10 @@
 #RC 1st, personal protfolio
 import tkinter as tk
 from tkinter import messagebox
+from financial_calculator import *
+from simple_morse_code import *
+from tictactoe import *
+from turtle_main import *
 # Project Descriptions (Display BEFORE running the code)
 project_descriptions = {
     "Project 1": {
@@ -9,18 +13,18 @@ project_descriptions = {
         "challenge": "Handling division by zero gracefully."
     },
     "Project 2": {
-        "description": "A to-do list application with save/load functionality.",
-        "learned": ["File handling", "Managing list states"],
-        "challenge": "Persisting data between sessions."
+        "description": "A morse code translator that works both ways.",
+        "learned": ["Input handling", "Managing shifts in asc values"],
+        "challenge": "Persisting data between inputs."
     },
     "Project 3": {
-        "description": "A simple game like Tic-Tac-Toe.",
+        "description": "A simple game of Tic-Tac-Toe.",
         "learned": ["Game logic implementation", "Using grids"],
         "challenge": "Detecting game win conditions."
     },
     "Project 4": {
-        "description": "A basic drawing app with canvas.",
-        "learned": ["Drawing on canvas", "Mouse event handling"],
+        "description": "Sipernaski triangle drawer.",
+        "learned": ["Drawing on canvas", "Recursion logic"],
         "challenge": "Implementing smooth drawing."
     }
 }
@@ -28,19 +32,19 @@ project_descriptions = {
 # Define project functions
 def run_project_1():
     messagebox.showinfo("Project 1", "Running Calculator App...")
-
+    main_calc()
 
 def run_project_2():
-    messagebox.showinfo("Project 2", "Running To-Do List App...")
-
+    messagebox.showinfo("Project 2", "Running Mores code translator App...")
+    main_morse()
 
 def run_project_3():
     messagebox.showinfo("Project 3", "Running Tic-Tac-Toe Game...")
-
+    main_tic()
 
 def run_project_4():
     messagebox.showinfo("Project 4", "Running Drawing App...")
-
+    main_turt()
 
 # Main Application 
 class PortfolioApp:

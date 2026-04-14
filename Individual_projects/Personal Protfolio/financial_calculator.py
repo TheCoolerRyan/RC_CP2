@@ -200,33 +200,34 @@ def proff(variable):
             return False, variable
 
 
-#Create the loop for everything
-while True:
-    #Creat picking loop
-    functions = ["sales","goal","compound", "budget", "tip"]
+#Create the loop for 
+def main_calc():
     while True:
-        option = input("What part of the financial calculator would you like to use? Sales, goal, compound, budget, or tip?:").strip().lower()
-        if option in functions:
+        #Creat picking loop
+        functions = ["sales","goal","compound", "budget", "tip"]
+        while True:
+            option = input("What part of the financial calculator would you like to use? Sales, goal, compound, budget, or tip?:").strip().lower()
+            if option in functions:
+                break
+            else:
+                print("Thats not an option, try again.")
+        if option == "sales":
+            sales()
+        elif option == "goal":
+            goal()
+        elif option == "compound":
+            compound()
+        elif option == "budget":
+            budget()
+        elif option == "tip":
+            tip()
+        else:
+            print("How did you manage this???")
+        quit = input("Would you like to stop? If you want to stop, type stop. Otherwise type anything else.").strip().lower()
+        if quit == "stop":
+            print("Okay, goodbye!")
             break
         else:
-            print("Thats not an option, try again.")
-    if option == "sales":
-        sales()
-    elif option == "goal":
-        goal()
-    elif option == "compound":
-        compound()
-    elif option == "budget":
-        budget()
-    elif option == "tip":
-        tip()
-    else:
-        print("How did you manage this???")
-    quit = input("Would you like to stop? If you want to stop, type stop. Otherwise type anything else.").strip().lower()
-    if quit == "stop":
-        print("Okay, goodbye!")
-        break
-    else:
-        print("Okay, lets goooo!")
+            print("Okay, lets goooo!")
 
 
