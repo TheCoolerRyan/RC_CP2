@@ -2,61 +2,69 @@ import pygame
 
 pygame.init()
 screen = pygame.display.set_mode((800, 600))
-
 clock = pygame.time.Clock()
 
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-
-        # Load the sheet
+        # Restored your original image loading and cropping
         sprite_sheet = pygame.image.load('images/spritesheet.webp').convert_alpha()
-        
-        # Define the area of the sprite (using the coords from earlier)
-        sprite_rect = pygame.Rect(35, 159, 125, 200)
-
-        # FIXED: Pygame REQUIRES the variable to be named 'self.image'
+        sprite_rect = pygame.Rect(35, 159, 125, 200) 
         self.image = sprite_sheet.subsurface(sprite_rect)
         
-        self.rect = self.image.get_rect(center=(400, 300))
+        self.rect = self.image.get_rect(center=(400, 350))
         self.speed = 5
+        self.floor_y = 350
+        self.y_velocity = 0
+        self.gravity = 0.8
+        self.jump_strength = -12.5
+        self.is_jumping = False
+
+    def jump(self):
+        if not self.is_jumping:
+            self.y_velocity = self.jump_strength
+            self.is_jumping = True
 
     def update(self):
         keys = pygame.key.get_pressed()
-        
-        # Horizontal movement with boundary checks
+        # Horizontal movement
         if keys[pygame.K_LEFT] and self.rect.left > 0:
             self.rect.x -= self.speed
         if keys[pygame.K_RIGHT] and self.rect.right < 800:
             self.rect.x += self.speed
-            
-        # Vertical movement with boundary checks
-        if keys[pygame.K_UP] and self.rect.top > 0:
-            while True:
-                if keys[pygame.K_LEFT] and self.rect.left > 0:
-                    self.rect.x -= self.speed
-                if keys[pygame.K_RIGHT] and self.rect.right < 800:
-                    self.rect.x += self.speed
-                self.rect.y -= 5
-                #USE TIME TO CREAT JUMPING
-                
-        
 
-# Setup sprite group
+        # Physics logic
+        if self.is_jumping:
+            self.y_velocity += self.gravity
+            self.rect.y += self.y_velocity
+
+            # Ground collision check
+            if self.rect.y >= self.floor_y:
+                self.rect.y = self.floor_y
+                self.y_velocity = 0 # Fixed the missing 'self' from your draft
+                self.is_jumping = False
+
+# Setup
 player = Player()
 all_sprites = pygame.sprite.Group(player)
 
 running = True
 while running:
+    # Handling events in the main loop prevents the jump from being "ignored"
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+        
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_UP:
+                player.jump()
+
     all_sprites.update()
-
-    screen.fill((250, 250, 250)) 
-    all_sprites.draw(screen) 
-    pygame.display.flip() 
-
+    
+    screen.fill((250, 250, 250))
+    all_sprites.draw(screen)
+    pygame.display.flip()
     clock.tick(60)
 
 pygame.quit()
+ 
